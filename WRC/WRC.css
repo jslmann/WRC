@@ -1,11 +1,11 @@
 /* CSS declarations go here */
-/*
-* {
-  background: black;
-  color: white;
+
+body {
+  background-color: "black";
+  background-image: url("client/images/WRC1.jpg");
+  color: black;
 }
 
 #title {
-  font-fami
+
 }
-*/
