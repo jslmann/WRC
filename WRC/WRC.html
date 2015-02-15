@@ -1,8 +1,30 @@
 <head>
   <title>Western Resource Connections</title>
 </head>
-
 <body>
+<div class="container">
+  <h1 id="heading">WRC: Western Resource Connections</h1>
+  under construction..
+
+  <div class="row">
+  <div class="span6">
+    <div class="well">
+      <h4>Did you go to the <a href="http://www.meetup.com/Meteor-SFBay/events/115875132/">Designer Potluck</a>? Sign in with Twitter to add your name.</h4>
+      {{loginButtons}}
+    </div>
+    <table class="table">
+       <tr>
+<td>
+<a target="_blank" href="http://twitter.com/{{userName}}"><img src="{{image}}"/> {{fullName}}</a>
+
+</td>
+</tr>
+    </table>
+  </div>
+</div>
+</div>
+</body>
+
 
 
 
@@ -40,11 +62,3 @@
       <li> Soonest possible delivery date </li>
     </ul>
      -->
-  <h1 id="heading">WRC: Western Resource Connections</h1>
-  under construction..
-</body>
-
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
