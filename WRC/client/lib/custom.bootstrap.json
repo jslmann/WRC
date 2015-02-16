@@ -27,7 +27,7 @@
   "media":                false,
   "list-group":           false,
   "panels":               false,
-  "responsive-embed":     false,
+  "responsive-embed":     true,
   "wells":                false,
   "close":                false,
 
@@ -47,5 +47,5 @@
   "transition":           false,
 
   "utilities":            false,
-  "responsive-utilities": false
+  "responsive-utilities": true
 }}
