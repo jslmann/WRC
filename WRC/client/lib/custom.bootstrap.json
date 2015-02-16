@@ -3,7 +3,7 @@
   "print":                false,
 
   "scaffolding":          false,
-  "type":                 false,
+  "type":                 true,
   "code":                 false,
   "grid":                 true,
   "tables":               true,

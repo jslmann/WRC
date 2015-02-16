@@ -1,11 +1,17 @@
 /* CSS declarations go here */
 
-body {
+.containerl {
+    font-family: "Source Sans Pro";
+}
+/*body {
   background-color: "black";
   background-image: url("client/images/WRC1.jpg");
   color: black;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
-
-#title {
+*/
+#heading {
+  text-align: center;
+  font-family: 'Philosopher', sans-serif;
 
 }
