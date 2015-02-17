@@ -7,6 +7,12 @@ To get hosting with meteor.com I:
 * on godaddy: I changed the A record in the nameserver record to point to from "@" (which represents the current domain name) to the ip address of "original.meteor.com"
   * the ip address was found using some website I googled using "ip address"
 
+## Fonts
+* got google fonts loaded uses javascript inserted into lib directory (it gets loaded first)
+* then realized that heading fonts can be set like everything else..
+  * they were initially "inherit"
+  * I could probably set the parent element easier...
+
 ## What Nik and Jon have done
 *  got a logo
 *  and cards

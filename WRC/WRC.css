@@ -1,8 +1,13 @@
 /* CSS declarations go here */
-
-.containerl {
-    font-family: "Source Sans Pro";
+body {
+  background-color: black;
+  color: white;
 }
+
+* {
+
+}
+
 /*body {
   background-color: "black";
   background-image: url("client/images/WRC1.jpg");
