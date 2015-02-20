@@ -1,3 +1,5 @@
+@import "client/lib/custom.bootstrap.import.less";
+
 /* CSS declarations go here */
 /*body {
   background-color: black;
@@ -8,9 +10,16 @@
   font-size: 14px;
 }*/
 
-img#hero {
+#hero img{
   width: 60%;
 }
+
+@media (min-width: @screen-sm-min) {
+  #hero h1 {
+    font-size: (3 * @font-size-base);
+  }
+}
+
 /*body {
   background-color: "black";
   background-image: url("client/images/WRC1.jpg");

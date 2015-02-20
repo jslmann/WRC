@@ -2,7 +2,15 @@
 
 ## Current Problem
 * We need a mock up!
-* how to implement grids
+
+## grids
+* how to implement grids?
+  * make container or container-fluid
+    * container has discrete increments
+      * what are these?
+  * make row
+  * make columns with with different classes
+    * grid-md-4 -> medium size  (laptop)  4 of 12 columns
 
 ## DNS etc
 
