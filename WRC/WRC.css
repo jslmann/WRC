@@ -1,13 +1,16 @@
 /* CSS declarations go here */
-body {
+/*body {
   background-color: black;
   color: white;
+}*/
+
+/*p, li {
+  font-size: 14px;
+}*/
+
+img#hero {
+  width: 60%;
 }
-
-* {
-
-}
-
 /*body {
   background-color: "black";
   background-image: url("client/images/WRC1.jpg");
@@ -15,8 +18,12 @@ body {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 */
-#heading {
+/*#heading {
   text-align: center;
   font-family: 'Philosopher', sans-serif;
 
-}
+}*/
+
+/*a {
+  color: white;
+}*/

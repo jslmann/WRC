@@ -5,7 +5,6 @@
 </head>
 <body>
   <div class="container" >
-    <h2> some text </h2>
     <h1 id="heading">WRC: Western Resource Connections</h1>
 
     <section class="" style="background-image: url('images/WRCinv.png');
@@ -25,11 +24,6 @@
   <abbr title="Phone">P:</abbr> (780) 278-1978<br>
   <a href="mailto:#">wrconnections@gmail.com</a>
 </address>
-
-
-
-
-
 
 </body>
 

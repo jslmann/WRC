@@ -1,5 +1,9 @@
 # WRC Notes
 
+## Current Problem
+* We need a mock up!
+* how to implement grids
+
 ## DNS etc
 
 To get hosting with meteor.com I:
@@ -11,7 +15,8 @@ To get hosting with meteor.com I:
 * got google fonts loaded uses javascript inserted into lib directory (it gets loaded first)
 * then realized that heading fonts can be set like everything else..
   * they were initially "inherit"
-  * I could probably set the parent element easier...
+  * I could probably set the parent element easier... not sure where to do this
+  though
 
 ## What Nik and Jon have done
 *  got a logo
