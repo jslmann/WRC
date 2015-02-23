@@ -1,7 +1,13 @@
 # WRC Notes
 
 ## Current Problem
-* We need a mock up!
+* where is Sans Pro font set from
+
+
+
+* more feedback from the boys
+* figure why bootstrap/less doesn't do exactly what we want all the time
+  * e.g. integrating external fonts
 
 ## grids
 * how to implement grids?

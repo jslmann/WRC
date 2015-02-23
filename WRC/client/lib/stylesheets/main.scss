@@ -1,0 +1,27 @@
+@import 'variables';
+@import '.meteor/local/build/programs/server/assets/packages/reywood_bootstrap3-sass/bootstrap';
+
+// hack that I put in because it wasn't there and bootstrap 3 "needs" it?
+// not necessary with latest version..
+// *, *:before, *:after {
+//   -webkit-box-sizing: border-box;
+//   -moz-box-sizing: border-box;
+//   box-sizing: border-box;
+// }
+
+#hero img {
+  width: 70%;
+}
+
+#hero h1 {
+  color: #600;
+  
+}
+
+//$font-family-sans-serif:  "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+@media (min-width: $screen-sm-min) {
+  #hero h1 {
+    font-size: (3.5 * $font-size-base);
+  }
+}

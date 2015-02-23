@@ -8,4 +8,4 @@ meteor-platform
 autopublish
 insecure
 less
-nemo64:bootstrap
+reywood:bootstrap3-sass
