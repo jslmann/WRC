@@ -14,14 +14,16 @@
 }
 
 #hero h1 {
-  color: #600;
-  
+  color: #960000;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-shadow: rgb(94, 94, 94) 4px 4px 6px;
 }
 
 //$font-family-sans-serif:  "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 @media (min-width: $screen-sm-min) {
   #hero h1 {
-    font-size: (3.5 * $font-size-base);
+    font-size: (4 * $font-size-base);
   }
 }
