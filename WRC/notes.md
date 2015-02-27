@@ -1,5 +1,27 @@
 # WRC Notes
 
+about
+inquiries@wrc...
+scrolling page
+vision / mission
+phone/text
+fax number? ?
+look into google maps and rate sheet
+diesel prices:
+** quote sheet
+
+customer references
+
+
+log book: uses an online app.
+
+future:
+package tracking
+signing
+time stamps
+
+
+
 ## Current Problem
 * where is Sans Pro font set from
 
