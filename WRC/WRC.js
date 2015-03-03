@@ -1,3 +1,31 @@
+Coords = new Meteor.Collection("Coords");
+
+// Router
+Router.route('/', {
+  waitOn: function () {
+    return Meteor.subscribe('Coords');
+  },
+  action: function () {
+    if (this.ready())
+      return true;
+  }
+});
+
+if (Meteor.isServer) {
+  Meteor.startup(function () {
+    // Publicaciones
+    Meteor.publish('Coords', function () {
+      return Coords.find();
+    });
+
+    return Meteor.methods({
+      removeAllCoords: function () {
+        return Coords.remove({});
+      }
+    });
+  });
+}
+
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
@@ -43,9 +71,3 @@ if (Meteor.isClient) {
   });
   };
  }
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}

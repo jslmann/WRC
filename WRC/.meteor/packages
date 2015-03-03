@@ -5,8 +5,8 @@
 # but you can also edit it by hand.
 
 meteor-platform
-autopublish
 insecure
 less
 reywood:bootstrap3-sass
 dburles:google-maps
+iron:router
