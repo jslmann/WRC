@@ -1,6 +1,9 @@
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
+  Meteor.startup(function() {
+    GoogleMaps.load();
+  });
 
 //   Template.hello.helpers({
 //     counter: function () {
@@ -14,6 +17,31 @@ if (Meteor.isClient) {
 //       Session.set('counter', Session.get('counter') + 1);
 //     }
 //   });
+
+  Template.body.helpers({
+    exampleMapOptions: function() {
+      // Make sure the maps API has loaded
+      if (GoogleMaps.loaded()) {
+        // Map initialization options
+        return {
+          center: new google.maps.LatLng(53.0, -113.0),
+          zoom: 10
+        };
+      }
+    }
+  });
+
+
+  Template.body.created = function() {
+  // We can use the `ready` callback to interact with the map API once the map is ready.
+  GoogleMaps.ready('exampleMap', function(map) {
+    // Add a marker to the map once it's ready
+    var marker = new google.maps.Marker({
+      position: map.options.center,
+      map: map.instance
+    });
+  });
+  };
  }
 
 if (Meteor.isServer) {
