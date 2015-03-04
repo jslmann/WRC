@@ -68,45 +68,72 @@ if (Meteor.isClient) {
 
 
   Template.body.created = function() {
+    var origin, destination;
     console.log("body created");
   // We can use the `ready` callback to interact with the map API once the map is ready.
-  GoogleMaps.ready('exampleMap', function(map) {
-    // Add a marker to the map once it's ready
-    var marker = new google.maps.Marker({
-      position: map.options.center,
-      map: map.instance
-    });
+    GoogleMaps.ready('exampleMap', function(map) {
+      // Add a marker to the map once it's ready
 
-    //map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    map = GoogleMaps.maps.exampleMap.instance;
-
-    directionsService = new google.maps.DirectionsService();
-
-    // Add listener
-    google.maps.event.addListener(map, 'click', addLatLng);
-
-    directionsDisplay = new google.maps.DirectionsRenderer();
-
-    directionsDisplay.setMap(map);
-    // we don't use this..
-    //directionsDisplay.setPanel(document.getElementById('directions-panel'));
-
-    function addLatLng(event) {
-      console.log("map click event!");
-      // Add coordinates into db
-      var point = {
-        'lat': event.latLng.lat(),
-        'lng': event.latLng.lng()
-      };
-      // this is supposed to make a new marker.. ad hoc
-      // taken from above
-      new google.maps.Marker({
-        position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
-        map: map,
-        name: 'Alphonso'
+      // this map is not the same "map" as below..
+      var marker = new google.maps.Marker({
+        position: map.options.center,
+        map: map.instance
       });
-      Coords.insert(point);
-    }
-  });
-  };
+
+      //map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      map = GoogleMaps.maps.exampleMap.instance;
+
+      directionsService = new google.maps.DirectionsService();
+
+      // Add listener
+      google.maps.event.addListener(map, 'click', addLatLng);
+
+      directionsDisplay = new google.maps.DirectionsRenderer();
+
+      directionsDisplay.setMap(map);
+      // we don't use this..
+      //directionsDisplay.setPanel(document.getElementById('directions-panel'));
+
+      // call back function for google map "click" event
+      function addLatLng(event) {
+        origin = map.center;
+        destination = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+        console.log("map click event!");
+        // Add coordinates into db
+
+        var request = {
+          origin: origin,
+          //waypoints: waypointsArr,
+          destination: destination,
+          travelMode: google.maps.TravelMode.DRIVING
+          //units: google.maps.UnitSystem.METRIC
+        };
+
+        directionsService.route(request, function (response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+            console.log(response);
+            console.log("total time:", response.routes[0].legs[0].duration.text);
+            console.log("total distance:", response.routes[0].legs[0].distance.value / 1000.0);
+          }
+        });
+
+        var point = {
+          'lat': event.latLng.lat(),
+          'lng': event.latLng.lng()
+        };
+
+        console.log("lat: ", event.latLng.lat());
+        // this is supposed to make a new marker.. ad hoc
+        // taken from above
+        new google.maps.Marker({
+          position: destination,
+          map: map,
+          title: 'Alphonso',
+          draggable: true
+        });
+        Coords.insert(point);
+      }
+    });
+    };
  }
