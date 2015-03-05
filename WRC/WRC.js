@@ -13,6 +13,8 @@ Router.route('/', {
 
 if (Meteor.isServer) {
   var cheerio =  Meteor.npmRequire('cheerio');
+  var someHTML = HTTP.get('http://google.com'); // fetched html
+  console.log('someHTML? :', someHTML); // and it worked!
 
   Meteor.startup(function () {
     // Publicaciones
