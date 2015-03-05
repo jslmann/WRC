@@ -12,6 +12,8 @@ Router.route('/', {
 });
 
 if (Meteor.isServer) {
+  var cheerio =  Meteor.npmRequire('cheerio');
+
   Meteor.startup(function () {
     // Publicaciones
     Meteor.publish('Coords', function () {
@@ -97,7 +99,13 @@ if (Meteor.isClient) {
       // call back function for google map "click" event
       function addLatLng(event) {
         origin = map.center;
-        destination = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+        if (! destination) {
+          destination = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+        }
+        else {
+          origin = destination;
+          destination = new google.maps.LatLng(event.latLng.lat(), event.latLng.lng());
+        }
         console.log("map click event!");
         // Add coordinates into db
 
@@ -105,8 +113,8 @@ if (Meteor.isClient) {
           origin: origin,
           //waypoints: waypointsArr,
           destination: destination,
-          travelMode: google.maps.TravelMode.DRIVING
-          //units: google.maps.UnitSystem.METRIC
+          travelMode: google.maps.TravelMode.DRIVING,
+          unitSystem: google.maps.UnitSystem.METRIC
         };
 
         directionsService.route(request, function (response, status) {
@@ -114,7 +122,8 @@ if (Meteor.isClient) {
             directionsDisplay.setDirections(response);
             console.log(response);
             console.log("total time:", response.routes[0].legs[0].duration.text);
-            console.log("total distance:", response.routes[0].legs[0].distance.value / 1000.0);
+            console.log("total distance:", response.routes[0].legs[0].distance.text);
+            //console.log("total distance:", response.routes[0].legs[0].distance.value / 1000.0);
           }
         });
 

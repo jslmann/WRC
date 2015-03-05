@@ -27,6 +27,20 @@ time stamps
 
 * where is Sans Pro font set from
 
+=> Started proxy.
+=> A patch (Meteor 1.0.3.2) for your current release is available!
+   Update this project now with 'meteor update --patch'.
+   Loading plugin `initializing-npm-supp...  |
+
+-> creating `packages.json` for the first time.
+-> add your npm modules to `packages.json`
+
+=> Creating container package for npm modules
+
+-> npm support has been initialized.
+-> please start your app again.
+
+
 * You've set up some data subscriptions with Meteor.publish(), but
  ** you still have autopublish turned on. Because autopublish is still
 ** on, your Meteor.publish() calls won't have much effect. All data
