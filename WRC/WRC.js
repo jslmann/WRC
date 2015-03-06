@@ -11,6 +11,8 @@ Router.route('/', {
   }
 });
 
+Router.route('jmap');
+
 if (Meteor.isServer) {
   var cheerio =  Meteor.npmRequire('cheerio');
   var someHTML = HTTP.get('http://google.com'); // fetched html
@@ -57,7 +59,7 @@ if (Meteor.isClient) {
 //     }
 //   });
 
-  Template.body.helpers({
+  Template.jmap.helpers({
     exampleMapOptions: function() {
       // Make sure the maps API has loaded
       if (GoogleMaps.loaded()) {
@@ -71,7 +73,7 @@ if (Meteor.isClient) {
   });
 
 
-  Template.body.created = function() {
+  Template.jmap.created = function() {
     var origin, destination;
     console.log("body created");
   // We can use the `ready` callback to interact with the map API once the map is ready.

@@ -72,9 +72,7 @@
                 </div>
             </div>
             <hr>
-            <div class="map-container">
-              {{> googleMap name="exampleMap" options=exampleMapOptions}}
-            </div>
+
             <footer>
                 <p>© Western Resource Connections 2013</p>
             </footer>
@@ -88,3 +86,9 @@
          IE10 viewport hack for Surface/desktop Windows 8 bug
         // <script src="assets/js/ie10-viewport-bug-workaround.js"></script> -->
     </body>
+
+    <template name="jmap">
+      <div class="map-container">
+        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+      </div>
+    </template>

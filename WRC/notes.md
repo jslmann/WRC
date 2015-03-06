@@ -23,7 +23,19 @@ time stamps
 
 
 ## Current Problem
+
+* split code into files and directories
+** add router path to only render map when I ask
+  done, adds template at bottom of page - not on separate page. committed
+* do log in stuff
+* input fields for maps? or
+* get current location or
+* explore cheerio stuff
+
+
+
 * https://github.com/avrora/meteor-gMaps/blob/master/meteorAndGmaps.js for using directions with google maps
+now working
 
 * where is Sans Pro font set from
 
