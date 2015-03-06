@@ -5,7 +5,7 @@ Router.route('/', {
   waitOn: function () {
     return Meteor.subscribe('Coords');
   },
-  action: function () {
+  data: function () { // was action:
     if (this.ready())
       return true;
   }
