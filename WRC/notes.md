@@ -31,6 +31,8 @@ time stamps
 * input fields for maps? or
 * get current location or
 * explore cheerio stuff
+* google map event input
+
 
 
 

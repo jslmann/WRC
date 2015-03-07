@@ -15,8 +15,8 @@ Router.route('jmap');
 
 if (Meteor.isServer) {
   var cheerio =  Meteor.npmRequire('cheerio');
-  var someHTML = HTTP.get('http://google.com'); // fetched html
-  console.log('someHTML? :', someHTML); // and it worked!
+  //var someHTML = HTTP.get('http://google.com'); // fetched html
+  //console.log('someHTML? :', someHTML); // and it worked!
 
   Meteor.startup(function () {
     // Publicaciones
@@ -36,6 +36,7 @@ if (Meteor.isServer) {
 
 if (Meteor.isClient) {
   var map;
+  var origin;
   var directionsDisplay;
   var directionsService;
   var pointsArr = new Array();
@@ -59,22 +60,49 @@ if (Meteor.isClient) {
 //     }
 //   });
 
+function getLocation() {
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+      console.log( "Geolocation is not supported by this browser.");
+  }
+}
+
+function showPosition(position) {
+
+  origin = new google.maps.LatLng(
+    position.coords.latitude,
+    position.coords.longitude
+  );
+  console.log("showPosition", origin);
+  console.log( "Latitude: " + position.coords.latitude +
+  "Longitude: " + position.coords.longitude) ;
+}
+
   Template.jmap.helpers({
     exampleMapOptions: function() {
+
       // Make sure the maps API has loaded
       if (GoogleMaps.loaded()) {
         // Map initialization options
+        getLocation(); // put Location in origin variable...
+        console.log("in exampleMapOptions", origin);
         return {
-          center: new google.maps.LatLng(43.0, -113.0),
+          center: origin, //new google.maps.LatLng(43.0, -113.0),
           zoom: 10
         };
       }
     }
   });
 
-
+// Template.jmap.created is called by meteor as soon as the template instance
+// hos been created but before it has been rendered.
   Template.jmap.created = function() {
-    var origin, destination;
+    var  destination;
+
+
+
+
     console.log("body created");
   // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('exampleMap', function(map) {
