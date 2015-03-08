@@ -88,7 +88,15 @@
         // <script src="assets/js/ie10-viewport-bug-workaround.js"></script> -->
     </body>
 
-    <template name="jmap">
+    <template name="kmap">
+      <form>
+        <input id="geocomplete" type="text" placeholder="Type in an address" size="90" />
+        <input id="find" type="button" value="find" />
+      </form>
+    </template>
+
+    <template name="jmap" class='jmap'>
+      {{> kmap}}
       <div class="map-container">
         {{> googleMap name="exampleMap" options=exampleMapOptions}}
       </div>

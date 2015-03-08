@@ -13,6 +13,8 @@ Router.route('/', {
 
 Router.route('jmap');
 
+Router.route('kmap');
+
 
 
 // Server Code ************************************************
@@ -43,30 +45,6 @@ if (Meteor.isClient) {
   var map;
   var origin;
 
-  // function getLocation() {
-  //   origin = "dogmeat";
-  //   if (navigator.geolocation) {
-  //       navigator.geolocation.getCurrentPosition(showPosition);
-  //   } else {
-  //       console.log( "Geolocation is not supported by this browser.");
-  //   }
-  // }
-  //
-  // function showPosition(position) {
-  //   console.log("in showPosition");
-  //   origin = position;
-  //
-  //   // new google.maps.LatLng(
-  //   //   position.coords.latitude,
-  //   //   position.coords.longitude
-  //   // );
-  //   console.log("showPosition:origin", origin);
-  //   console.log( "Latitude: " + origin.coords.latitude +
-  //   "Longitude: " + origin.coords.longitude) ;
-  //   Session.set('origin',origin)
-  //   //Coords.insert()
-  // }
-
   //origin = "original";
   var directionsDisplay;
   var directionsService;
@@ -75,7 +53,9 @@ if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
   Meteor.startup(function() {
-    GoogleMaps.load();
+    GoogleMaps.load({
+      libraries: 'places'
+    });
   });
 
 
@@ -84,13 +64,13 @@ if (Meteor.isClient) {
       origin = Geolocation.currentLocation(); // This worked !!! (how??)
       // Make sure the maps API has loaded
 
-      if (GoogleMaps.loaded() && origin) {
-        // if (! origin) {
-        //   return {
-        //     center: new google.maps.LatLng(0.0, 0.0),
-        //     zoom: 10
-        //   }
-        // };
+      if (GoogleMaps.loaded()) {
+        if (! origin) {
+          return {
+            center:  new google.maps.LatLng(0.0, 0.0),
+            zoom: 10
+          }
+        }
         // Map initialization options
         console.log("in exampleMapOptions", origin);
         return {
@@ -101,6 +81,28 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.kmap.rendered = function() {
+    Tracker.autorun(function () {
+      if (GoogleMaps.loaded()) {
+        console.log("kmap.rendered maps.loaded");
+
+//        $("input#geocomplete").style("color: blue");
+        $("input#geocomplete").geocomplete({
+          //map: '#exampleMap'
+        });
+      }
+    });
+  };
+
+  Template.kmap.events({
+    'click button': function() {
+      $('input').trigger('geocode');
+    }
+  });
+
+
+
+/// ********** THIS IS UGLY *******************
 // Template.jmap.created is called by meteor as soon as the template instance
 // has been created but before it has been rendered.
   Template.jmap.created = function() {

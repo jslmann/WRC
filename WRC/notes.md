@@ -24,12 +24,18 @@ time stamps
 
 ## Current Problem
 
+*
+
 * _call backs with geolocation_
 http://phucnguyen.info/blog/everything-you-need-to-know-about-async-meteor/
   - finally solved this by using the mdg:geolocation package.
   - it uses reactive variables...
 
 * _understand variable scope_
+  var thisVar; // has file scope
+  thatVar; // has project scope
+  function thisF() {}; has file scope
+  thatF = function() {}; has project scope
 
 * split code into files and directories
 ** add router path to only render map when I ask
