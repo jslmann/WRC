@@ -13,6 +13,9 @@ Router.route('/', {
 
 Router.route('jmap');
 
+
+
+// Server Code ************************************************
 if (Meteor.isServer) {
   var cheerio =  Meteor.npmRequire('cheerio');
   //var someHTML = HTTP.get('http://google.com'); // fetched html
@@ -34,9 +37,37 @@ if (Meteor.isServer) {
   });
 }
 
+
+// Client Code **********************************************
 if (Meteor.isClient) {
   var map;
   var origin;
+
+  // function getLocation() {
+  //   origin = "dogmeat";
+  //   if (navigator.geolocation) {
+  //       navigator.geolocation.getCurrentPosition(showPosition);
+  //   } else {
+  //       console.log( "Geolocation is not supported by this browser.");
+  //   }
+  // }
+  //
+  // function showPosition(position) {
+  //   console.log("in showPosition");
+  //   origin = position;
+  //
+  //   // new google.maps.LatLng(
+  //   //   position.coords.latitude,
+  //   //   position.coords.longitude
+  //   // );
+  //   console.log("showPosition:origin", origin);
+  //   console.log( "Latitude: " + origin.coords.latitude +
+  //   "Longitude: " + origin.coords.longitude) ;
+  //   Session.set('origin',origin)
+  //   //Coords.insert()
+  // }
+
+  //origin = "original";
   var directionsDisplay;
   var directionsService;
   var pointsArr = new Array();
@@ -47,48 +78,23 @@ if (Meteor.isClient) {
     GoogleMaps.load();
   });
 
-//   Template.hello.helpers({
-//     counter: function () {
-//       return Session.get('counter');
-//     }
-//   });
-//
-//   Template.hello.events({
-//     'click button': function () {
-//       // increment the counter when button is clicked
-//       Session.set('counter', Session.get('counter') + 1);
-//     }
-//   });
-
-function getLocation() {
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-      console.log( "Geolocation is not supported by this browser.");
-  }
-}
-
-function showPosition(position) {
-
-  origin = new google.maps.LatLng(
-    position.coords.latitude,
-    position.coords.longitude
-  );
-  console.log("showPosition", origin);
-  console.log( "Latitude: " + position.coords.latitude +
-  "Longitude: " + position.coords.longitude) ;
-}
 
   Template.jmap.helpers({
     exampleMapOptions: function() {
-
+      origin = Geolocation.currentLocation(); // This worked !!! (how??)
       // Make sure the maps API has loaded
-      if (GoogleMaps.loaded()) {
+
+      if (GoogleMaps.loaded() && origin) {
+        // if (! origin) {
+        //   return {
+        //     center: new google.maps.LatLng(0.0, 0.0),
+        //     zoom: 10
+        //   }
+        // };
         // Map initialization options
-        getLocation(); // put Location in origin variable...
         console.log("in exampleMapOptions", origin);
         return {
-          center: origin, //new google.maps.LatLng(43.0, -113.0),
+          center: new google.maps.LatLng(origin.coords.latitude, origin.coords.longitude),
           zoom: 10
         };
       }
@@ -96,15 +102,14 @@ function showPosition(position) {
   });
 
 // Template.jmap.created is called by meteor as soon as the template instance
-// hos been created but before it has been rendered.
+// has been created but before it has been rendered.
   Template.jmap.created = function() {
     var  destination;
-
-
-
+    //getLocation();
 
     console.log("body created");
-  // We can use the `ready` callback to interact with the map API once the map is ready.
+    console.log("in jmap.created", origin);
+    // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('exampleMap', function(map) {
       // Add a marker to the map once it's ready
 
@@ -177,4 +182,4 @@ function showPosition(position) {
       }
     });
     };
- }
+  }

@@ -24,6 +24,13 @@ time stamps
 
 ## Current Problem
 
+* _call backs with geolocation_
+http://phucnguyen.info/blog/everything-you-need-to-know-about-async-meteor/
+  - finally solved this by using the mdg:geolocation package.
+  - it uses reactive variables...
+
+* _understand variable scope_
+
 * split code into files and directories
 ** add router path to only render map when I ask
   done, adds template at bottom of page - not on separate page. committed
