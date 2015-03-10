@@ -24,7 +24,10 @@ time stamps
 
 ## Current Problem
 
-*
+* need to hook up fields to map
+
+* fields for entering locations etc.
+  added jeremy:geocompletion
 
 * _call backs with geolocation_
 http://phucnguyen.info/blog/everything-you-need-to-know-about-async-meteor/

@@ -42,7 +42,7 @@ if (Meteor.isServer) {
 
 // Client Code **********************************************
 if (Meteor.isClient) {
-  var map;
+  //mmap; // open up scope for deb
   var origin;
 
   //origin = "original";
@@ -84,11 +84,25 @@ if (Meteor.isClient) {
   Template.kmap.rendered = function() {
     Tracker.autorun(function () {
       if (GoogleMaps.loaded()) {
-        console.log("kmap.rendered maps.loaded");
-
-//        $("input#geocomplete").style("color: blue");
         $("input#geocomplete").geocomplete({
-          //map: '#exampleMap'
+          map: '.map_canvas',
+          mapOptions: {
+            zoom: 10,
+            center: new google.maps.LatLng(0.0,0.0)
+          }
+        })
+        .bind("geocode:result", function(event, result){
+            console.log(result);
+        });
+        mmap = $("input#geocomplete").geocomplete("map");
+        $("input#destination").geocomplete()
+        .bind("geocode:result", function(event, result){
+          console.log(result.geometry.location);
+            new google.maps.Marker({
+              position: result.geometry.location,
+              map: mmap // this worked !!
+            });
+
         });
       }
     });
@@ -107,10 +121,7 @@ if (Meteor.isClient) {
 // has been created but before it has been rendered.
   Template.jmap.created = function() {
     var  destination;
-    //getLocation();
 
-    console.log("body created");
-    console.log("in jmap.created", origin);
     // We can use the `ready` callback to interact with the map API once the map is ready.
     GoogleMaps.ready('exampleMap', function(map) {
       // Add a marker to the map once it's ready

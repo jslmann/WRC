@@ -93,11 +93,16 @@
         <input id="geocomplete" type="text" placeholder="Type in an address" size="90" />
         <input id="find" type="button" value="find" />
       </form>
+      <form>
+        <input id="destination" type="text" placeholder="Type in an address" size="90" />
+        <input id="find" type="button" value="find" />
+      </form>
     </template>
 
     <template name="jmap" class='jmap'>
       {{> kmap}}
-      <div class="map-container">
-        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+      <div id="jmap" class="map-container">
+        <div class="map_canvas"></div>
+        <!-- {{> googleMap name="exampleMap" options=exampleMapOptions}} -->
       </div>
     </template>
