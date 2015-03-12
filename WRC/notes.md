@@ -24,7 +24,11 @@ time stamps
 
 ## Current Problem
 
-* add fields for fuel costs, driver costs (30 min from 8:46)
+* can we do the same for the destination and start fields..?
+  there is an autofill option - but I don't see anything for maps..
+
+* add fields for fuel costs, driver costs (30 min from 8:46) done by 9:30
+  - polish look
 
 * another thang traffic cameras en route
 

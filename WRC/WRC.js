@@ -3,11 +3,16 @@ Costs.attachSchema(new SimpleSchema({
   priceDiesel: {
     type: Number,
     label: "Price of Diesel",
+    decimal: true,
+    autoform: {
+         step: "0.05"
+      },
     min: 0
   },
   driverCost: {
     type: Number,
     label: "Hourly cost of driver",
+    decimal: true,
     min: 0
   },
 }));
