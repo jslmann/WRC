@@ -88,7 +88,13 @@
         // <script src="assets/js/ie10-viewport-bug-workaround.js"></script> -->
     </body>
 
+
+    <template name="workParams">
+      {{> quickForm collection="Costs" id="insertBookForm" type="insert"}}
+    </template>
+
     <template name="kmap">
+      {{> workParams}}
       <form>
         <input id="geocomplete" type="text" placeholder="Type in start address" size="90" />
         <!-- <input id="find" type="button" value="find" /> -->

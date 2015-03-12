@@ -18,3 +18,5 @@ npm-container
 http
 mdg:geolocation
 jeremy:geocomplete
+aldeed:autoform
+aldeed:collection2

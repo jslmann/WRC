@@ -1,9 +1,21 @@
-Coords = new Meteor.Collection("Coords");
+Costs = new Meteor.Collection("Costs");
+Costs.attachSchema(new SimpleSchema({
+  priceDiesel: {
+    type: Number,
+    label: "Price of Diesel",
+    min: 0
+  },
+  driverCost: {
+    type: Number,
+    label: "Hourly cost of driver",
+    min: 0
+  },
+}));
 
 // Router
 Router.route('/', {
   waitOn: function () {
-    return Meteor.subscribe('Coords');
+    return Meteor.subscribe('Costs');
   },
   data: function () { // was action:
     if (this.ready())
@@ -25,15 +37,15 @@ if (Meteor.isServer) {
 
   Meteor.startup(function () {
     // Publicaciones
-    Meteor.publish('Coords', function () {
-      return Coords.find();
+    Meteor.publish('Costs', function () {
+      return Costs.find();
     });
 
     return Meteor.methods({
       // see below for how this is used... or not
-      // called with Meteor.call('removeAllCoords')
-      removeAllCoords: function () {
-        return Coords.remove({});
+      // called with Meteor.call('removeAllCosts')
+      removeAllCosts: function () {
+        return Costs.remove({});
       }
     });
   });
@@ -113,11 +125,11 @@ if (Meteor.isClient) {
       if (GoogleMaps.loaded()) {
         $("input#geocomplete").geocomplete({
           map: '.map_canvas',
-          location: 'Alberta'
-          // mapOptions: {
-          //   zoom: 10,
-          //   center: new google.maps.LatLng(0.0,0.0)
-          // }
+          location: 'Edmonton, Alberta',
+          mapOptions: {
+            zoom: 10,
+          //  center: new google.maps.LatLng(0.0,0.0)
+          }
         })
         .bind("geocode:result", function(event, result){
           start = result.geometry.location;
@@ -125,16 +137,18 @@ if (Meteor.isClient) {
         });
 
         mmap = $("input#geocomplete").geocomplete("map");
+
+        // setup directions services and renderer from google and connect to mmap
         directionsService = new google.maps.DirectionsService();
-      //  google.maps.event.addListener(mmap, 'click', addLatLng);
+        //google.maps.event.addListener(mmap, 'click', addLatLng);
         directionsDisplay = new google.maps.DirectionsRenderer();
         directionsDisplay.setMap(mmap);
 
-
+        // get info from destination input and make marker for it.
+        // #todo: set color to green
         $("input#destination").geocomplete()
         .bind("geocode:result", function(event, result){
           destination = result.geometry.location;
-          console.log(destination);
           new google.maps.Marker({
             position: destination, //result.geometry.location,
             map: mmap // this worked !!
@@ -149,13 +163,13 @@ if (Meteor.isClient) {
             unitSystem: google.maps.UnitSystem.METRIC
           };
 
+          // get directions from google
           directionsService.route(request, function (response, status) {
             if (status == google.maps.DirectionsStatus.OK) {
               directionsDisplay.setDirections(response);
               console.log(response);
               console.log("total time:", response.routes[0].legs[0].duration.text);
               console.log("total distance:", response.routes[0].legs[0].distance.text);
-              //console.log("total distance:", response.routes[0].legs[0].distance.value / 1000.0);
             }
           });
 
@@ -191,7 +205,7 @@ Template.jmap.helpers({
       // Map initialization options
       console.log("in exampleMapOptions", origin);
       return {
-        center: new google.maps.LatLng(origin.coords.latitude, origin.coords.longitude),
+        center: new google.maps.LatLng(origin.Costs.latitude, origin.Costs.longitude),
         zoom: 10
       };
     }
@@ -272,7 +286,7 @@ Template.jmap.helpers({
           title: 'Alphonso',
           draggable: true
         });
-        Coords.insert(point);
+        Costs.insert(point);
       }
     });
     };

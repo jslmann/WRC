@@ -24,6 +24,12 @@ time stamps
 
 ## Current Problem
 
+* add fields for fuel costs, driver costs (30 min from 8:46)
+
+* another thang traffic cameras en route
+
+
+
 * need to hook up fields to map
 
 * fields for entering locations etc.
